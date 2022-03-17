@@ -1,2 +1,2 @@
 # Instafeed
-Small android application demo
+Small android application demo like a Insta**** feed.
