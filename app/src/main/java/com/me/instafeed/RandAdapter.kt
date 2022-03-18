@@ -9,12 +9,22 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class RandAdapter(private val context: Context, private var randomList: ArrayList<DataResponse>) : RecyclerView.Adapter<RandAdapter.RandViewHolder>() {
+class RandAdapter(
+    private val context: Context,
+    private var randomList: ArrayList<DataResponse>,
+    private val onItemClicked: (DataResponse) -> Unit
+) : RecyclerView.Adapter<RandAdapter.RandViewHolder>() {
 
-    inner class RandViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        // each data item is just a string in this case
+    inner class RandViewHolder(v: View, onItemClicked: (Int) -> Unit) : RecyclerView.ViewHolder(v) {
+        init {
+            itemView.setOnClickListener {
+                onItemClicked(adapterPosition)
+            }
+        }
+
         var title: TextView = v.findViewById(R.id.text_rand_item)
         var item: ImageView = v.findViewById(R.id.image_rand_item)
+        var share: ImageView = v.findViewById(R.id.btn_share)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RandViewHolder {
@@ -22,15 +32,18 @@ class RandAdapter(private val context: Context, private var randomList: ArrayLis
         var v = LayoutInflater.from(parent.context)
             .inflate(R.layout.rand_item, parent, false)
 
-        return RandViewHolder(v)
+        return RandViewHolder(v) {
+            onItemClicked(randomList[it])
+        }
     }
 
     override fun onBindViewHolder(holder: RandViewHolder, position: Int) {
         holder.title.text = getItem(position).title
         Glide.with(context)
             .load(getItem(position).images.original.url)
-            .centerCrop()
+            .centerInside()
             .into(holder.item)
+        holder.share.setOnClickListener { onItemClicked(getItem(position)) }
     }
 
     override fun getItemCount(): Int {

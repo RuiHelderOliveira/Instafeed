@@ -1,13 +1,16 @@
 package com.me.instafeed
 
+import android.R.id.shareText
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.me.instafeed.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -74,7 +77,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.getRandom()
+        for (i in 1..3) {
+            viewModel.getRandom()
+        }
+
         viewModel.getTrending()
     }
 
@@ -85,7 +91,15 @@ class MainActivity : AppCompatActivity() {
             false
         )
 
-        randAdapter = RandAdapter(this, arrayListOf(data))
+        randAdapter = RandAdapter(this, arrayListOf(data)) { item ->
+            val shareIntent = ShareCompat.IntentBuilder.from(this@MainActivity)
+                .setType("text/plain")
+                .setText(item.url)
+                .intent
+            if (shareIntent.resolveActivity(packageManager) != null) {
+                startActivity(shareIntent)
+            }
+        }
 
         val dividerHorizontal = DividerItemDecoration(
             binding.recyclerViewRandom.getContext(),

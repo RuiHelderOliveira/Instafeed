@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="circular">#FFFFFFFF</color>
+    <color name="share">#FFFFFF</color>
 </resources>
