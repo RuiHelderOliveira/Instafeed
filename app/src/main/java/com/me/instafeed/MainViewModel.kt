@@ -17,7 +17,7 @@ class MainViewModel(val repo: GiphyRepository) : ViewModel() {
     val resultRandLiveData = _dataRandResult
 
     fun getRandom() {
-        repo.getRandom("dUVV2nQ9Yx4MEyY7N6z5782sY1u5GAj2")
+        repo.getRandom(BuildConfig.API_KEY)
             .enqueue(object : Callback<RandomResponse> {
                 override fun onFailure(call: Call<RandomResponse>, t: Throwable) {
                     resultFailureLiveData.postValue(t.message)
@@ -30,7 +30,7 @@ class MainViewModel(val repo: GiphyRepository) : ViewModel() {
     }
 
     fun getTrending() {
-        repo.getTrending("dUVV2nQ9Yx4MEyY7N6z5782sY1u5GAj2")
+        repo.getTrending(BuildConfig.API_KEY)
             .enqueue(object : Callback<TrendingResponse> {
                 override fun onFailure(call: Call<TrendingResponse>, t: Throwable) {
                     resultFailureLiveData.postValue(t.message)
