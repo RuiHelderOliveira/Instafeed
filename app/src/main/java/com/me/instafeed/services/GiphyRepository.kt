@@ -1,4 +1,4 @@
-package com.me.instafeed
+package com.me.instafeed.services
 
 class GiphyRepository {
     fun getRandom(key: String) = RetrofitBuilder.apiService.getRandom(key)

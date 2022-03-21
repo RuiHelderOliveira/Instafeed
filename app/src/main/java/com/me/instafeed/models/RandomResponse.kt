@@ -1,4 +1,4 @@
-package com.me.instafeed
+package com.me.instafeed.models
 
 data class RandomResponse(
     val data: DataResponse,

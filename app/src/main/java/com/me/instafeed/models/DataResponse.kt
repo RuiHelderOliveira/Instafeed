@@ -1,4 +1,4 @@
-package com.me.instafeed
+package com.me.instafeed.models
 
 data class DataResponse(
     val type: String,

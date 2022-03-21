@@ -1,7 +1,9 @@
-package com.me.instafeed
+package com.me.instafeed.models
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.me.instafeed.BuildConfig
+import com.me.instafeed.services.GiphyRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

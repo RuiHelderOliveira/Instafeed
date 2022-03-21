@@ -1,4 +1,4 @@
-package com.me.instafeed
+package com.me.instafeed.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.me.instafeed.R
+import com.me.instafeed.models.DataResponse
 
 class TrendAdapter(private val context: Context, private var trendingList: ArrayList<DataResponse>) : RecyclerView.Adapter<TrendAdapter.TrendViewHolder>() {
 

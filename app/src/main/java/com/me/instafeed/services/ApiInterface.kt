@@ -1,5 +1,7 @@
-package com.me.instafeed
+package com.me.instafeed.services
 
+import com.me.instafeed.models.RandomResponse
+import com.me.instafeed.models.TrendingResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

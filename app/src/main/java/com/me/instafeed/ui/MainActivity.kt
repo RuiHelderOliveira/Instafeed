@@ -1,4 +1,4 @@
-package com.me.instafeed
+package com.me.instafeed.ui
 
 import android.os.Bundle
 import android.view.View
@@ -8,7 +8,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.me.instafeed.R
+import com.me.instafeed.adapters.RandAdapter
+import com.me.instafeed.adapters.TrendAdapter
 import com.me.instafeed.databinding.ActivityMainBinding
+import com.me.instafeed.models.DataResponse
+import com.me.instafeed.models.MainViewModel
+import com.me.instafeed.services.GiphyRepository
 
 
 class MainActivity : AppCompatActivity() {

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InstagramFeed">
         <activity
-            android:name="com.me.instafeed.MainActivity"
+            android:name="com.me.instafeed.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
