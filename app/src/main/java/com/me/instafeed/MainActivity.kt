@@ -1,6 +1,5 @@
 package com.me.instafeed
 
-import android.R.id.shareText
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private var isLoading = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,8 +39,16 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerViewRandom.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (!recyclerView.canScrollVertically(1)) {
-                    viewModel.getRandom()
+                val linearLayoutManager =
+                    binding.recyclerViewRandom.layoutManager as LinearLayoutManager?
+                if (!isLoading) {
+                    if (!recyclerView.canScrollVertically(1)) {
+                        if (linearLayoutManager != null) {
+                            // Last item reached
+                            viewModel.getRandom()
+                            isLoading = true;
+                        }
+                    }
                 }
             }
         })
@@ -58,8 +67,10 @@ class MainActivity : AppCompatActivity() {
                     randAdapter.addGif(result.body().data)
                 }
 
-                binding.recyclerViewRandom.scrollToPosition(
-                    (binding.recyclerViewRandom.adapter?.itemCount ?: 0) - 1)
+                isLoading = false;
+
+                //binding.recyclerViewRandom.scrollToPosition(
+                //    (binding.recyclerViewRandom.adapter?.itemCount ?: 0) - 1)
 
                 setupListeners()
             }
